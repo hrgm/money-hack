@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <link href="{% static 'variable_cost/css/input.bundle.css' %}" rel="stylesheet">
+  <title>変動費入力</title>
+</head>
+
+<body>
+  <header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
+          aria-label="Open navigation menu">menu</button>
+        <span class="mdc-top-app-bar__title">Money Hack</span>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
+        <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+          aria-label="Options">more_vert</button>
+      </section>
+    </div>
+  </header>
+  <div id="contents">
+    <form method="POST" action="{% url 'variable_cost:input' %}" id="form-input">
+      {% csrf_token %}
+      {{ form.user }}
+      <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon"
+              id="mdc-text-payment-date">
+              {{ form.payment_date }}
+              <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing hidden"
+                id="payment-date-clear" tabindex="0" role="button">clear</i>
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="payment-date">支払日</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+            {{ form.shop }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.expense }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+            {{ form.expense_detail }}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_method_1 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_detail_1 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-amount">
+              {{ form.amount_1 }}
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="amount-1">金額</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <div class="mdc-touch-target-wrapper">
+              <button class="mdc-button mdc-button--outlined mdc-button--touch btn-payment-add" type="button"
+                data-idx="1">
+                <div class="mdc-button__ripple"></div>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                <span class="mdc-button__label">追加</span>
+                <div class="mdc-button__touch"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner hidden" id="payment-row-2">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_method_2 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_detail_2 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-amount">
+              {{ form.amount_2 }}
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="amount-2">金額</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <div class="mdc-touch-target-wrapper">
+              <button class="mdc-button mdc-button--outlined mdc-button--touch btn-payment-add" type="button"
+                data-idx="2">
+                <div class="mdc-button__ripple"></div>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                <span class="mdc-button__label">追加</span>
+                <div class="mdc-button__touch"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner hidden" id="payment-row-3">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_method_3 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_detail_3 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-amount">
+              {{ form.amount_3 }}
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="amount-3">金額</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <div class="mdc-touch-target-wrapper">
+              <button class="mdc-button mdc-button--outlined mdc-button--touch btn-payment-add" type="button"
+                data-idx="3">
+                <div class="mdc-button__ripple"></div>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                <span class="mdc-button__label">追加</span>
+                <div class="mdc-button__touch"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner hidden" id="payment-row-4">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_method_4 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_detail_4 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-amount">
+              {{ form.amount_4 }}
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="amount-4">金額</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <div class="mdc-touch-target-wrapper">
+              <button class="mdc-button mdc-button--outlined mdc-button--touch btn-payment-add" type="button"
+                data-idx="4">
+                <div class="mdc-button__ripple"></div>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                <span class="mdc-button__label">追加</span>
+                <div class="mdc-button__touch"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner hidden" id="payment-row-5">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_method_5 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            {{ form.payment_detail_5 }}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-amount">
+              {{ form.amount_5 }}
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="amount-5">金額</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell">
+            <label class="mdc-text-field mdc-text-field--outlined" id="mdc-text-total-amount">
+              {{ form.total_amount }}
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="total-amount">合計金額</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+            </label>
+          </div>
+          <div class="mdc-layout-grid__cell">
+            <div class="mdc-touch-target-wrapper">
+              <button class="mdc-button mdc-button--raised mdc-button--touch" type="submit" name="btn-regist">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">登録</span>
+                <div class="mdc-button__touch"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="{% static 'variable_cost/js/input.bundle.js' %}"></script>
+</body>
+
+</html>

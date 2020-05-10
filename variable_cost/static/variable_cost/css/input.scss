@@ -1,0 +1,30 @@
+@use 'base';
+
+// Layout Grid
+@use "@material/layout-grid/mdc-layout-grid";
+
+// Top App Bar
+@use "@material/icon-button/mdc-icon-button";
+@use "@material/top-app-bar/mdc-top-app-bar";
+
+// Buttons
+@use "@material/button/mdc-button";
+
+// Text field
+@use "@material/textfield/mdc-text-field";
+
+// flatpickr
+@use "flatpickr/dist/flatpickr.min";
+
+#contents {
+  padding-top: 60px;
+}
+
+.mdc-layout-grid__inner {
+  margin-bottom: 20px;
+}
+
+// 支払日
+#mdc-text-payment-date {
+  width: 160px;
+}

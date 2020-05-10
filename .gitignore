@@ -1,0 +1,6 @@
+.vscode
+venv
+node_modules
+local_settings.py
+*.bundle.*
+*.pyc

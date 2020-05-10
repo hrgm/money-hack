@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <link href="{% static 'variable_cost/css/list.bundle.css' %}" rel="stylesheet">
+  <title>変動費一覧</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <th>支払日</th>
+      <th>店舗</th>
+      <th>金額</th>
+    </thead>
+    <tbody>
+      {% for cost in cost_list %}
+      <tr>
+        <td>{{ cost.payment_date }}</td>
+        <td>{{ cost.shop_name }}</td>
+        <td>{{ cost.amount }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script src="{% static 'variable_cost/js/list.bundle.js' %}"></script>
+</body>
+
+</html>
